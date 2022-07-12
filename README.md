@@ -12,18 +12,15 @@ node项目是用以前的代码改的，有冗余部分没删
 静态页面展示地址：https://refore.github.io/
 
 没搭服务器,实现效果应该是这样的：
-![image](https://user-images.githubusercontent.com/92076745/168040392-91bfd2a5-bbbf-45f5-9b30-7116f99d80d2.png)
+![image](https://user-images.githubusercontent.com/92076745/178526395-c7d598c0-16cd-4755-8154-6ea64e0f63e4.png)
 
-![image](https://user-images.githubusercontent.com/92076745/168040502-ff5c4109-8ebe-4c82-b01a-fe30883c411e.png)
+![image](https://user-images.githubusercontent.com/92076745/178526054-bbcc779f-d26c-4e0d-8f76-bd9d066501d3.png)
 
-其他页面：
-![image](https://user-images.githubusercontent.com/92076745/168040677-e912d846-8603-4749-ae4f-c76325143d62.png)
+![image](https://user-images.githubusercontent.com/92076745/178526135-2891cf23-9511-4f0e-afec-0e610e0e3b13.png)
 
-![image](https://user-images.githubusercontent.com/92076745/168040730-378234f2-788d-437c-a4b5-a81cac29fb86.png)
+![image](https://user-images.githubusercontent.com/92076745/178526221-0b5bf0e5-0ce2-42f6-844f-d3f919d8222b.png)
 
-![image](https://user-images.githubusercontent.com/92076745/168040943-dec8ba49-622c-4f6a-b441-11e2bb5d88d9.png)
-
-![image](https://user-images.githubusercontent.com/92076745/168041004-e34e8489-b82d-4497-9f03-e7c526ba9c52.png)
+![image](https://user-images.githubusercontent.com/92076745/178526263-a0c9e696-98cb-4390-816c-80d7ae1ee523.png)
 
 
 
