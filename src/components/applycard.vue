@@ -1,6 +1,6 @@
 <template>
 	<div class="applycard" >
-		<div class="cardhead">申请岗位：{{name}}</div>
+		<div class="cardhead">{{name}}({{type}})</div>
 		
 		<div class="carddate">投递时间：{{date}}</div>
 		<div class="cardstate">状态：{{state}}</div>
@@ -12,7 +12,7 @@
 <script>
 export default{
 	name:"applycard",
-	props:['name','state','date'],
+	props:['name','state','date',"type"],
 	data(){
 		return{
 			schoolList:[]

@@ -9,9 +9,10 @@ const expressJoi = require('@escook/express-joi')
 // 2. 导入需要的验证规则对象
 const { reg_login_schema } = require('../schema/user')
 
-router.post("/reguser",expressJoi(reg_login_schema),userHandler.regUser)
+// router.post("/reguser",expressJoi(reg_login_schema),userHandler.regUser)
+router.post("/reguser",userHandler.regUser)
 
-router.post('/login',expressJoi(reg_login_schema),userHandler.login)
+router.post('/login',userHandler.login)
 router.get('/userinfo',userinfo_handler.getUserInfo)
 
 

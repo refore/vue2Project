@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const config = require('../config')
 
 exports.regUser = (req, res) => {
+	res.setHeader("Access-Control-Allow-Origin", "*");
   // 接收表单数据
   const userinfo = req.body
   // 判断数据是否合法
@@ -18,30 +19,34 @@ exports.regUser = (req, res) => {
       return res.cc(err)
     }
     // 用户名被占用
-    if (results.length > 0) {
+   else if (results.length > 0) {
       return res.cc('用户名被占用，请更换其他用户名！' )
     }
     // TODO: 用户名可用，继续后续流程...
+	//???????
+	userinfo.password = bcrypt.hashSync(userinfo.password, 10)
+	
+	const sql2 = 'insert into ev_users set ?'
+	db.query(sql2, { username: userinfo.username, password: userinfo.password }, function (err, results) {
+	  // 执行 SQL 语句失败
+	  if (err) return res.cc(err)
+	  // SQL 语句执行成功，但影响行数不为 1
+	 else if (results.affectedRows !== 1) {
+	    return res.cc('注册用户失败，请稍后再试！' )
+	  }
+	  // 注册成功
+	  res.cc('注册成功',0)
+	})
   })
-  //???????
-  userinfo.password = bcrypt.hashSync(userinfo.password, 10)
   
-  const sql2 = 'insert into ev_users set ?'
-  db.query(sql2, { username: userinfo.username, password: userinfo.password }, function (err, results) {
-    // 执行 SQL 语句失败
-    if (err) return res.cc(err)
-    // SQL 语句执行成功，但影响行数不为 1
-    if (results.affectedRows !== 1) {
-      return res.cc('注册用户失败，请稍后再试！' )
-    }
-    // 注册成功
-    res.cc('注册成功',0)
-  })
   
   
 }
 
 exports.login = (req, res) => {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	// res.setHeader( "Access-Control-Max-Age", "2592000" )
+	// res.setHeader("Access-Control-Allow-Headers","content")
 	const userinfo = req.body
 	const sql = 'select * from ev_users where username=?'
 	//查询用户名
@@ -60,8 +65,8 @@ exports.login = (req, res) => {
 	  }
 	  
 	  // TODO：登录成功，生成 Token 字符串
-	  //剔除 **密码** 和 **头像** 的值
-	  const user = { ...results[0], password: '', user_pic: '' }
+	  //剔除 **密码** 
+	  const user = { ...results[0], password: '' }
 	  
 	  // 生成 Token 字符串
 	  const tokenStr = jwt.sign(user, config.jwtSecretKey, {

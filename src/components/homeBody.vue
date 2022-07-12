@@ -3,12 +3,28 @@
 		 <div class="block"> 
 		  </div>
 		  <div class="btn">
-			  <a href="#/userInfo">加入我们</a>
+			  <a :href="'#/school/'+this.username">加入我们</a>
+			 <!-- <button type="button" @click="change()">aaaaa</button> -->
+			
 		  </div>
+		  <loginBox  ref="loginBoxRef" ></loginBox>
+		  
+
+		  
 	</div>
 </template>
 
 <script>
+	import loginBox from './user/loginBox.vue'
+export default{
+	components:{
+		loginBox
+	},
+	methods:{
+		
+	},
+	props:['username']
+}
 </script>
 
 <style scoped>
@@ -19,14 +35,11 @@
 		width: 100%;
 		height: 100%;
 	}
-	body {
-	margin:0;
-	padding:0;
-	}
+
 	.block{
 			width: 100%;
 		height: 657px;
-		 background: url(../assets/1.png) no-repeat center 0; 
+		 background: url(../assets/2.jpg) no-repeat center 0; 
 			background-size: cover;
 			background-position:0;
 	

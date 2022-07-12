@@ -14,13 +14,11 @@
 			  :on-exceed="handleExceed"
 			  :file-list="fileList">
 			  <el-button size="small" type="primary">点击上传</el-button>
-			  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+			  <div slot="tip" class="el-upload__tip">只能上传jpg/png/pdf/word文件，且不超过5MB</div>
 			</el-upload>
 		</div>
 		
-<el-tooltip class="item" effect="dark" content="Top Left 提示文字" placement="top-start">
-         <div class="aa"> dsd</div>
-        </el-tooltip>		
+
 		
 	</div>
 </template>
@@ -28,6 +26,14 @@
 <script>
 export default{
 	name:"userInfo",
+	data() {
+	      return {
+	        fileList: []
+				  };
+	    },
+		props:{
+			username:''
+		},
 	methods:{
 		 handleRemove(file, fileList) {
 		        console.log(file, fileList);
@@ -59,7 +65,7 @@ export default{
 		/* height: 657px; */
 		/* background-color: #ff0000; */
 		margin-top: 58px;
-		margin-left: 10px;
+		/* margin-left: 10px; */
 		margin-right: 10px;
 	}
 	.infoHead{

@@ -7,13 +7,14 @@ const config = require('./config')
 const { expressjwt: expressJWT }  = require('express-jwt')
 const userinfoRouter = require('./router/userinfo')
 const schoolinfoRouter = require('./router/schoolInfo.js')
+const userPositionRouter = require('./router/userPosition.js')
 const joi = require('@hapi/joi')
 
 // 创建 express 的服务器实例
 const app = express()
 // 导入并使用用户信息路由模块
 
-// 注意：以 /my 开头的接口，都是有权限的接口，需要进行 Token 身份认证
+
 
 
 
@@ -34,6 +35,7 @@ app.use(function (req, res, next) {
 
 
 // 使用 .unless({ path: [/^\/api\//] }) 指定哪些接口不需要进行 Token 的身份认证
+//路径带api的不需要登录
 app.use(expressJWT({ secret: config.jwtSecretKey ,algorithms: ["HS256"],}).unless({ path: [/^\/api\//] }))
 
 
@@ -42,6 +44,8 @@ app.use(bodyParser.json())
 
 //路由注册并添加路径前缀/api
 app.use('/api',schoolinfoRouter)
+app.use('/api',userPositionRouter)
+
 app.use('/api',userRouter)
 app.use('/my', userinfoRouter)
 // 将 cors 注册为全局中间件

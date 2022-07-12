@@ -2,14 +2,14 @@
 	<div class="school">
 		<div class="schoolHead">校园招聘</div>
 		<el-collapse accordion>
-		  <el-collapse-item  v-for="item in schoolList">
+		  <el-collapse-item  v-for="item in schoolList" ref="positionRef">
 		    <template class = "schooltitle" slot="title">
 		      {{item.positionname}}
 		    </template>
 		    <div class="describe">{{item.describe}}</div>
 		    
 			 <div class="apply">
-				 <el-button class="apply" type="primary" plain>立即投递</el-button>
+				 <el-button class="apply" type="primary" @click="positionInfo.positionname=item.positionname;doPost()" plain >立即投递</el-button>
 			 </div>
 		  </el-collapse-item>
 		</el-collapse>
@@ -24,37 +24,51 @@ export default{
 	name:"school",
 	data(){
 		return{
-			schoolList:[]
+			schoolList:[],
+			positionInfo:{positionname:'',username:this.username,type:0},
+			//type为0表示是校招岗位
 		}
 	},
+	props:{
+		username:''
+	},
 	created() {
+		
 	this.getSchoolList();
 	},
 	methods:{
 		async getSchoolList(){
 			console.log("前端获取成功！");
-					  const { data: res } = await this.$http.get('/api/schoolInfo');
-					  if(res.status!==0){this.$message("获取数据异常！")}
-					  else{
-						  console.log(res.data);
-						  this.schoolList=res.data;
+		 const { data: res } = await this.$http.get('/api/schoolInfo');
+		  if(res.status!==0){this.$message("获取数据异常！")}
+		  else{
+			  console.log(res.data);
+			  this.schoolList=res.data;
 
-					  }
+		  }
 		},
-		//  getSchoolList(){
-		// 	console.log("前端获取成功！");
-		// 			  this.$http.get('/api/schoolInfo').then((res)=>{
-		// 				  console.log(res.data);
-		// 				  if(res.status!==0){this.$message("获取数据异常！")}
-		// 			  else{
-		// 				  console.log(res.data);
-		// 				  this.schoolList=res.data;
-		
-		// 			  }
-		// 			  })
-					  
-		// }
-	}
+		doPost(){
+			if(this.username=='登录'){
+				this.$router.push({
+					path:`/userApply/${this.username}`
+				})
+			}
+			else{
+				this.addPosition()
+			}
+		},
+		async addPosition(){
+			console.log(this.positionInfo)
+
+				const { data: res } = await this.$http.post('/api/addUserPosition', this.positionInfo);
+				if (res.status !== 0) this.$message.error("投递失败");
+				else{this.$message.success('岗位投递成功');
+				}
+				// res.status 等于 0 表示数据请求成功，否则，请求失败！
+		},
+			
+	
+	},
 }
 	
 </script>
