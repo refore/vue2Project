@@ -9,8 +9,6 @@ node项目是用以前的代码改的，有冗余部分没删
 
 # 展示
 
-静态页面展示地址：https://refore.github.io/
-
 没搭服务器,实现效果应该是这样的：
 ![image](https://user-images.githubusercontent.com/92076745/178526395-c7d598c0-16cd-4755-8154-6ea64e0f63e4.png)
 
